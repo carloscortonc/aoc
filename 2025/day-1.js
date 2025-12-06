@@ -32,9 +32,9 @@ const part_2 = (input, debug) =>
     { p: 50, count: 0 }
   ).count;
 
-const input = await fetch("https://adventofcode.com/2025/day/1/input")
+const i = await fetch("https://adventofcode.com/2025/day/1/input")
   .then((r) => r.text())
   .then((raw) => raw.split("\n"));
 
-console.log("Part 1: ", part_1(input));
-console.log("Part 2: ", part_2(input));
+console.log("Part 1: ", part_1(i));
+console.log("Part 2: ", part_2(i));
