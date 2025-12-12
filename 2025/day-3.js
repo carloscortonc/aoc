@@ -39,4 +39,4 @@ const i = await fetch("https://adventofcode.com/2025/day/3/input")
   .then((raw) => raw.trim().split("\n"));
 
 console.log("Part 1: ", part_1(i));
-console.log("Part 1: ", part_2(i));
+console.log("Part 2: ", part_2(i));
