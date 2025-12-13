@@ -221,10 +221,12 @@ const part_2 = (i, debug) => {
   return count;
 };
 
-const i = await fetch("https://adventofcode.com/2025/day/2/input")
-  .then((r) => r.text())
-  // IMPORTANT trim() to remove the last "\n" character
-  .then((raw) => raw.trim().split(","));
+execute(async () => {
+  const i = await fetch("https://adventofcode.com/2025/day/2/input")
+    .then((r) => r.text())
+    // IMPORTANT trim() to remove the last "\n" character
+    .then((raw) => raw.trim().split(","));
 
-console.log("Part 1: ", part_1(i));
-console.log("Part 2: ", part_2(i));
+  console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
+});

@@ -34,9 +34,11 @@ const solver = ({ i, nDigits, debug }) => {
 const part_1 = (i) => solver({ i, nDigits: 2 });
 const part_2 = (i) => solver({ i, nDigits: 12 });
 
-const i = await fetch("https://adventofcode.com/2025/day/3/input")
-  .then((r) => r.text())
-  .then((raw) => raw.trim().split("\n"));
+execute(async () => {
+  const i = await fetch("https://adventofcode.com/2025/day/3/input")
+    .then((r) => r.text())
+    .then((raw) => raw.trim().split("\n"));
 
-console.log("Part 1: ", part_1(i));
-console.log("Part 2: ", part_2(i));
+  console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
+});

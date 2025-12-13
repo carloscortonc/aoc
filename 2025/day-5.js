@@ -47,9 +47,11 @@ let part_2 = (i) => {
   }, 0);
 };
 
-const i = await fetch("https://adventofcode.com/2025/day/5/input")
-  .then((r) => r.text())
-  .then((raw) => raw.trim().split("\n"));
+execute(async () => {
+  const i = await fetch("https://adventofcode.com/2025/day/5/input")
+    .then((r) => r.text())
+    .then((raw) => raw.trim().split("\n"));
 
-console.log("Part 1: ", part_1(i));
-console.log("Part 2: ", part_2(i));
+  console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
+});

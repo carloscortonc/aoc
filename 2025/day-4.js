@@ -45,14 +45,16 @@ let part_2 = (i_) => {
   return count;
 };
 
-const i = await fetch("https://adventofcode.com/2025/day/4/input")
-  .then((r) => r.text())
-  .then((raw) =>
-    raw
-      .trim()
-      .split("\n")
-      .map((r) => r.split(""))
-  );
+execute(async () => {
+  const i = await fetch("https://adventofcode.com/2025/day/4/input")
+    .then((r) => r.text())
+    .then((raw) =>
+      raw
+        .trim()
+        .split("\n")
+        .map((r) => r.split(""))
+    );
 
-console.log("Part 1: ", part_1(i));
-console.log("Part 2: ", part_2(i));
+  console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
+});
