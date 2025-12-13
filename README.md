@@ -28,7 +28,7 @@ This will load and execute the solution files from this repository, hosted on Gi
 
 ```sh
 $ cd aoc
-$ npx http-server . --port=8080
+$ npx http-server . --cors --port=8080
 ```
 
 ### Execute solution locally with node
