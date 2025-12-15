@@ -2,7 +2,7 @@
 
 const distance = (a, b) => Math.sqrt([0, 1, 2].map((i) => (a[i] - b[i]) ** 2).reduce((acc, curr) => acc + curr, 0));
 
-let part_1 = (i) => {
+let solver = (i, nPairs) => {
   const m = i.map((i) => i.split(",").map((e) => parseInt(e)));
   const distances = {};
   // Pre-compute all distances
@@ -14,9 +14,10 @@ let part_1 = (i) => {
   // Sort distances
   const sorted = Object.entries(distances).sort((a, b) => a[1] - b[1]);
   const circuits = [];
+  let lastPair;
   // Keep track of which circuit index uses each entry-index
   const circuitIndexById = {};
-  for (const [entry] of sorted.slice(0, 1000)) {
+  for (const [entry] of sorted.slice(0, nPairs)) {
     const [a, b] = entry.split("-");
     // Find the correct circuit index to add it to
     const circuitIndex = circuitIndexById[a] ?? circuitIndexById[b] ?? circuits.length;
@@ -29,6 +30,7 @@ let part_1 = (i) => {
       }
       // Empty `b` index
       circuits[toDeleteIndex] = [];
+      lastPair = entry;
       continue;
     }
     if (!circuits[circuitIndex]) {
@@ -38,13 +40,25 @@ let part_1 = (i) => {
       if (circuits[circuitIndex].includes(e)) continue;
       circuits[circuitIndex].push(e);
       circuitIndexById[e] = circuitIndex;
+      lastPair = entry;
     }
   }
-  return circuits
+  const c = circuits
     .map((c) => c.length)
-    .sort((a, b) => b - a)
-    .slice(0, 3)
-    .reduce((acc, curr) => acc * curr, 1);
+    .filter((e) => e)
+    .sort((a, b) => b - a);
+  const lastPairIndexes = lastPair.split("-");
+  return { circuits: c, lastPairIndexes };
+};
+
+let part_1 = (i) => {
+  const { circuits } = solver(i, 1000);
+  return circuits.slice(0, 3).reduce((acc, curr) => acc * curr, 1);
+};
+
+let part_2 = (i) => {
+  const { lastPairIndexes } = solver(i);
+  return lastPairIndexes.map((index) => i[index].split(",")[0]).reduce((acc, curr) => acc * parseInt(curr), 1);
 };
 
 execute(async () => {
@@ -53,4 +67,5 @@ execute(async () => {
     .then((raw) => raw.trim().split("\n"));
 
   console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
 });
