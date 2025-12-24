@@ -37,6 +37,6 @@ execute(async () => {
     .then((r) => r.text())
     .then((raw) => raw.split("\n"));
 
-  console.log("Part 1: ", part_1([]));
-  console.log("Part 2: ", part_2([]));
+  console.log("Part 1: ", part_1(i));
+  console.log("Part 2: ", part_2(i));
 });
