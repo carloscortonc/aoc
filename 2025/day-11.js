@@ -29,43 +29,6 @@ const count_ways = (input, route) => {
   return counter;
 };
 
-let part_1_v1 = (i) => {
-  const m = {};
-  for (const e of i) {
-    const [k, ...list] = e.split(/:? /);
-    m[k] = list;
-  }
-  let counter = 0;
-  const queue = m["you"];
-  while (queue.length) {
-    const [e] = queue.splice(0, 1);
-    if (e === "out") {
-      counter++;
-      continue;
-    }
-    queue.push(...(m[e] || []));
-  }
-  return counter;
-};
-
-let part_1_v2 = (i) => {
-  const m = {};
-  for (const e of i) {
-    const [k, ...list] = e.split(/:? /);
-    m[k] = list;
-  }
-  const cache = {};
-  let ways = (v) => {
-    if (cache[v]) return cache[v];
-    if (v === "out") return 1;
-    if (!m[v]) return 0;
-    const r = m[v].reduce((acc, curr) => acc + ways(curr), 0);
-    cache[v] = r;
-    return r;
-  };
-  return ways("you");
-};
-
 let part_1 = (i) => count_ways(i, ["you", "out"]);
 let part_2 = (i) => count_ways(i, ["svr", "fft", "dac", "out"]);
 
